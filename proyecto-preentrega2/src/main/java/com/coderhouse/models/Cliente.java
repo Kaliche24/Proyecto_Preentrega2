@@ -37,7 +37,7 @@ public class Cliente {
 
     public Cliente() {
         super();
-        this.createdAt = LocalDateTime.now();  // Asignar createdAt por defecto
+        this.createdAt = LocalDateTime.now();
     }
 
     public Cliente(String nombre, String email) {

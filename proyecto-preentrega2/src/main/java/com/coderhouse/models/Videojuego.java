@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Videojuegos")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "categoria", "cliente"})  // Evitar problemas de serialización
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "categoria", "cliente"})
 public class Videojuego {
 
     @Id
@@ -25,7 +25,7 @@ public class Videojuego {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "categoria_id")
-    private Categoria categoria; // Reemplazamos genero por categoria
+    private Categoria categoria;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id")
@@ -46,7 +46,6 @@ public class Videojuego {
         this.cliente = cliente;
     }
 
-    // Getters y setters...
     
     public Long getId() {
         return id;
