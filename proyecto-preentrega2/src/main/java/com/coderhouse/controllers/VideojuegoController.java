@@ -50,7 +50,7 @@ public class VideojuegoController {
     public ResponseEntity<Videojuego> createVideojuego(@RequestBody Videojuego videojuego) {
         try {
             Videojuego videojuegoCreado = videojuegoService.saveVideojuego(videojuego);
-            return ResponseEntity.status(HttpStatus.CREATED).body(videojuegoCreado); //
+            return ResponseEntity.status(HttpStatus.CREATED).body(videojuegoCreado); 
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

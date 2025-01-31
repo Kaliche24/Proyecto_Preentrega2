@@ -1,5 +1,6 @@
 package com.coderhouse.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -8,9 +9,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Videojuegos")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "categoria", "cliente"})  // Evitar problemas de serialización
 public class Videojuego {
 
     @Id
@@ -22,27 +25,29 @@ public class Videojuego {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "categoria_id")
-    private Categoria categoria;
+    private Categoria categoria; // Reemplazamos genero por categoria
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    private String genero;
+    private LocalDateTime createdAt;
 
     public Videojuego() {
         super();
+        this.createdAt = LocalDateTime.now();
     }
 
-    public Videojuego(String nombre, String descripcion, Categoria categoria, Cliente cliente, String genero) {
+    public Videojuego(String nombre, String descripcion, Categoria categoria, Cliente cliente) {
         this();
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.categoria = categoria;
         this.cliente = cliente;
-        this.genero = genero;
     }
 
+    // Getters y setters...
+    
     public Long getId() {
         return id;
     }
@@ -83,16 +88,16 @@ public class Videojuego {
         this.cliente = cliente;
     }
 
-    public String getGenero() {
-        return genero;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setGenero(String genero) {
-        this.genero = genero;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override
     public String toString() {
-        return "Videojuego [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", genero=" + genero + "]";
+        return "Videojuego [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", categoria=" + categoria + ", createdAt=" + createdAt + "]";
     }
 }

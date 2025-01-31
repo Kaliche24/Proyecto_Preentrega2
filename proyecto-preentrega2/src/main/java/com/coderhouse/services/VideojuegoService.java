@@ -29,7 +29,9 @@ public class VideojuegoService {
     public Videojuego updateVideojuegoById(Long id, Videojuego videojuegoDetails) {
         Videojuego videojuego = findById(id); 
         videojuego.setNombre(videojuegoDetails.getNombre());
-        videojuego.setGenero(videojuegoDetails.getGenero());
+        videojuego.setDescripcion(videojuegoDetails.getDescripcion());
+        videojuego.setCategoria(videojuegoDetails.getCategoria());
+        videojuego.setCliente(videojuegoDetails.getCliente());
         return videojuegoRepository.save(videojuego);
     }
 

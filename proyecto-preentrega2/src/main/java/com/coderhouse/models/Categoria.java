@@ -25,7 +25,7 @@ public class Categoria {
     @Column(unique = true, nullable = false)
     private String nombre;
 
-    @OneToMany(mappedBy = "categoria", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Videojuego> videojuegos = new ArrayList<>();
 
@@ -37,6 +37,8 @@ public class Categoria {
         this();
         this.nombre = nombre;
     }
+
+    // Getters y setters...
 
     public Long getId() {
         return id;
